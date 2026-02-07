@@ -57,7 +57,7 @@ public class Main {
             while ((line = br.readLine()) != null) {
                 // {"t":1731719000,"sensor":"temp_humid","temp_c":23.8,"humid":42.1}
                 if (line.contains("temp_humid") && (options.contains("t_temp") || options.contains("t_hum"))) {
-                    temp_humid current = mapper.readValue(line, temp_humid.class);
+                    Temp_humid current = mapper.readValue(line, Temp_humid.class);
                     if (current.temp_c != null && options.contains("t_temp")) {
                         tempGraph.add(current.t, current.temp_c);
                     }
@@ -67,7 +67,7 @@ public class Main {
                 }
                 // {"t":1731719000,"sensor":"gyro","x":-0.12,"y":0.03,"z":0.99}
                 else if (line.contains("gyro") && (options.contains("g_depth") || options.contains("g_pos"))) {
-                    gyro current = mapper.readValue(line, gyro.class);
+                    Gyro current = mapper.readValue(line, Gyro.class);
                     if (current.z != null && options.contains("g_depth")) {
                         gyro_depth_Graph.add(current.t, current.z);
                     }
@@ -77,7 +77,7 @@ public class Main {
                 }
                 // {"t":1731719000,"sensor":"barometer","pressure_pa":101325,"alt_m":56.3}
                 else if (line.contains("barometer") && (options.contains("b_pres") || options.contains("b_depth") || options.contains("b_pres_depth"))) {
-                    baro current = mapper.readValue(line, baro.class);
+                    Baro current = mapper.readValue(line, Baro.class);
                     if (current.pressure_pa != null && options.contains("b_pres")) {
                         baro_pres_Graph.add(current.t, current.pressure_pa);
                     }
@@ -90,7 +90,7 @@ public class Main {
                 }
                 // {"t":1731719001,"sensor":"hall_rpm","id":1,"rpm":1499}
                 else if(line.contains("hall_rpm") && (options.contains("h_rpm"))){
-                    hall current = mapper.readValue(line,hall.class);
+                    Hall current = mapper.readValue(line, Hall.class);
                     if(current.id == 0 && options.contains("h_rpm")) {
                         hall_rmp_0_Graph.add(current.t, current.rpm);
                     }
